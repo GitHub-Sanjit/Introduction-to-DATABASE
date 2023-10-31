@@ -53,3 +53,17 @@ Where bonus < 1000 OR bonus IS NULL
 -- 584. Find Customer Referee.
 SELECT name FROM Customer
 Where ifnull(referee_id,1) <> 2;
+
+
+-- 586. Customer Placing the Largest Number of Orders.
+SELECT customer_number
+FROM Orders
+GROUP BY customer_number
+ORDER BY COUNT(order_number) DESC
+LIMIT 1
+
+
+-- 595. Big Countries
+SELECT name,population,area
+FROM World
+WHERE area > 3000000 OR population > 25000000

@@ -41,3 +41,15 @@ FROM Weather w1
 JOIN Weather w2
 ON DATEDIFF(w1.recordDate,w2.recordDate)=-1
 AND w2.temperature > w1.temperature
+
+
+-- 577. Employee Bonus
+SELECT name, bonus
+FROM Employee LEFT JOIN Bonus
+ON Employee.empId = Bonus.empId
+Where bonus < 1000 OR bonus IS NULL
+
+
+-- 584. Find Customer Referee.
+SELECT name FROM Customer
+Where ifnull(referee_id,1) <> 2;

@@ -89,3 +89,23 @@ HAVING COUNT(class) >= 5
      SELECT DISTINCT sales_id 
      FROM cte
     );
+
+
+-- 610. Triangle Judgement
+SELECT x,y,z, 
+IF(x + y > z AND x + z > y AND y + z > x,"Yes","No") 
+AS triangle
+FROM triangle;
+
+-- 619. Biggest Single Number
+WITH cte AS(
+    SELECT num FROM MyNumbers
+    GROUP BY num
+    HAVING COUNT(num)=1
+)
+SELECT 
+    CASE
+        WHEN COUNT(*) > 0 THEN MAX(num)
+        ELSE NULL
+    END AS num
+FROM cte

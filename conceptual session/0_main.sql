@@ -67,3 +67,25 @@ LIMIT 1
 SELECT name,population,area
 FROM World
 WHERE area > 3000000 OR population > 25000000
+
+
+-- 596. Classes More Than 5 Students
+SELECT class
+FROM courses
+GROUP BY class
+HAVING COUNT(class) >= 5
+
+-- 607. Sales Person
+ WITH cte AS
+ (SELECT sales_id FROM Orders o
+ LEFT JOIN Company c
+ ON o.com_id = c.com_id
+ WHERE c.name LIKE 'RED'
+ )
+
+ SELECT name 
+ FROM SalesPerson 
+ WHERE sales_id NOT IN (
+     SELECT DISTINCT sales_id 
+     FROM cte
+    );

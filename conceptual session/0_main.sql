@@ -127,3 +127,17 @@ SET sex = CASE
             WHEN sex = "m" THEN "f"
             Else "m"
           END
+
+
+-- 1050. Actors and Directors Who Cooperated At Least Three Times
+SELECT actor_id,director_id
+FROM actorDirector
+GROUP BY actor_id, director_id
+HAVING COUNT(*) >= 3;
+
+
+-- 1068. Product Sales Analysis I
+SELECT product_name,year,price
+FROM Sales
+JOIN Product
+ON Sales.product_id = Product.product_id

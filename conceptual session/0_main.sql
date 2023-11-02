@@ -109,3 +109,21 @@ SELECT
         ELSE NULL
     END AS num
 FROM cte
+
+
+-- 620. Not Boring Movies
+SELECT * FROM Cinema
+WHERE id % 2 = 1 AND description != 'boring'
+ORDER BY rating DESC
+
+
+-- 627. Swap Salary
+--1.
+UPDATE Salary
+SET sex = IF(sex = "m", "f", "m");
+--2.
+UPDATE Salary
+SET sex = CASE
+            WHEN sex = "m" THEN "f"
+            Else "m"
+          END

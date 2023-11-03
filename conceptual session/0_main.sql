@@ -159,3 +159,49 @@ ON Product.product_id = Sales.product_id
 GROUP BY product_id
 HAVING MIN(sale_date) >= '2019-01-01' 
 AND MAX(sale_date) <= '2019-03-31'
+
+
+-- 511. Game Play Analysis I
+SELECT player_id, MIN(event_date) AS first_login
+FROM Activity
+GROUP BY player_id
+
+
+-- 1141. User Activity for the Past 30 Days I
+SELECT activity_date AS day,
+COUNT(DISTINCT user_id) AS active_users
+FROM Activity
+WHERE activity_date 
+BETWEEN DATE_ADD("2019-07-27", INTERVAL -29 DAY) 
+AND '2019-07-27'
+GROUP BY activity_date
+------------
+SELECT activity_date AS day, COUNT(DISTINCT user_id) AS active_users
+FROM Activity
+GROUP BY activity_date
+HAVING(activity_date BETWEEN '2019-06-28' AND '2019-07-27')
+
+
+-- 1148. Article Views I
+SELECT DISTINCT author_id AS id
+FROM Views
+WHERE author_id = viewer_id
+ORDER BY id
+
+
+-- 1179. Reformat Department Table
+SELECT id,
+sum(IF(month='Jan',revenue,null)) as Jan_Revenue,
+sum(IF(month='Feb',revenue,null)) as Feb_Revenue,
+sum(IF(month='Mar',revenue,null)) as Mar_Revenue,
+sum(IF(month='Apr',revenue,null)) as Apr_Revenue,
+sum(IF(month='May',revenue,null)) as May_Revenue,
+sum(IF(month='Jun',revenue,null)) as Jun_Revenue,
+sum(IF(month='Jul',revenue,null)) as Jul_Revenue,
+sum(IF(month='Aug',revenue,null)) as Aug_Revenue,
+sum(IF(month='Sep',revenue,null)) as Sep_Revenue,
+sum(IF(month='Oct',revenue,null)) as Oct_Revenue,
+sum(IF(month='Nov',revenue,null)) as Nov_Revenue,
+sum(IF(month='Dec',revenue,null)) as Dec_Revenue
+from Department 
+GROUP BY id;

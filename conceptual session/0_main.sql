@@ -141,3 +141,21 @@ SELECT product_name,year,price
 FROM Sales
 JOIN Product
 ON Sales.product_id = Product.product_id
+
+
+-- 1075. Project Employees I
+SELECT p.project_id,
+ROUND(AVG(e.experience_years),2) AS average_years
+FROM project p
+LEFT JOIN employee e
+ON p.employee_id = e.employee_id
+GROUP BY p.project_id
+
+
+-- 1084. Sales Analysis III.
+SELECT Product.product_id, Product.product_name
+FROM Product JOIN Sales
+ON Product.product_id = Sales.product_id
+GROUP BY product_id
+HAVING MIN(sale_date) >= '2019-01-01' 
+AND MAX(sale_date) <= '2019-03-31'

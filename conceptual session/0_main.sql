@@ -205,3 +205,23 @@ sum(IF(month='Nov',revenue,null)) as Nov_Revenue,
 sum(IF(month='Dec',revenue,null)) as Dec_Revenue
 from Department 
 GROUP BY id;
+
+
+-- 1211. Queries Quality and Percentage:
+SELECT query_name, 
+Round (sum(rating/position)/count(*),2) AS quality, 
+Round (sum(CASE WHEN rating < 3 THEN 1 ELSE 0 END)/count(*)*100,2) AS poor_query_percentage 
+FROM Queries
+GROUP BY query_name;
+
+
+--  1251. Average Selling Price:
+SELECT p.product_id, 
+IFNULL(ROUND(SUM(p.price * u.units) / SUM(u.units),2),0) 
+AS average_price
+FROM Prices p
+LEFT JOIN UnitsSold u
+ON p.product_id = U.product_id
+AND u.purchase_date 
+BETWEEN p.start_date AND p.end_date
+GROUP BY p.product_id

@@ -1,11 +1,10 @@
 import mysql.connector
 
 mydbconnection = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    passwd="password"
+    host="localhost", user="root", password="sanjit"
 )
-print(mydbconnection)
+
+print(mydbconnection.user)
 
 db_name = "python_test_db"
 

@@ -244,3 +244,12 @@ LEFT JOIN cte2
     ON cte1.student_id = cte2.student_id 
     AND cte1.subject_name = cte2.subject_name
     order by student_id,subject_name;
+
+
+-- 1327. List The Product Ordered in a Period
+SELECT product_name, SUM(unit) AS unit
+FROM Products p JOIN Orders o
+ON p.product_id = o.product_id
+WHERE order_date LIKE '2020-02%'
+GROUP BY p.product_id
+HAVING SUM(unit) >= 100
